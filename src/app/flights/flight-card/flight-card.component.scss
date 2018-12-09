@@ -1,0 +1,47 @@
+:host{
+    cursor: pointer;
+
+}
+
+.card-container {
+    padding: 15px;
+    position: relative;
+}
+
+.card-content {
+    padding: 30px 20px;
+    background: white;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%; 
+    top: -25px;
+    height: 50px; 
+    width: 50px;
+    background: white;
+    border-radius: 50%;
+    z-index: 10;
+    border: 1px solid grey;
+    transform: translateX(-50%);
+
+    mat-icon {
+        color: darkblue;
+    }
+}
+
+.time {
+    text-align: center;
+    font-size: 13px;
+    color: grey;
+}
+
+.destination, .origin {
+
+    font-size: 26px;
+    font-weight: bold;
+    color: deeppink;
+}

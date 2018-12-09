@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col">
+    <h3>
+      FLIGHT DETAIL
+      <mat-icon class="float-right" (click)= "close()">close</mat-icon>
+    </h3>
+    <p class="label">Code: {{ flight.code }}</p>
+    <p class="label">Crew: </p>
+    <ul>
+      <li *ngFor = "let member of flight.crew">
+        {{ member.name }}
+      </li>
+    </ul>
+    <button mat-raised-button color= "primary" class="float-right" (click) = "goToEditFlight()">
+      EDIT FLIGHT
+    </button>
+</div>

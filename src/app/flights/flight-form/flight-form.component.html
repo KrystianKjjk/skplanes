@@ -1,0 +1,85 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-8">
+      <mat-form-field>
+        <input matInput formControlName="code" placeholder="Code" #codeInput>
+        <mat-error *ngIf="form.get('code').hasError('required')">Code is required</mat-error>
+        <mat-error *ngIf="form.get('code').hasError('minlength')">Minimum length is 4 characters</mat-error>
+        <mat-error *ngIf="form.get('code').hasError('maxlength')">Maximum length is 7 characters</mat-error>
+        <mat-error *ngIf="form.get('code').hasError('incorrentCode')">Code must start with SK prefix</mat-error>
+        <mat-hint align="end">{{ codeInput.value.length }} / 7</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-form-field>
+        <input matInput formControlName="origin" placeholder="Origin">
+        <mat-error *ngIf="form.get('origin').hasError('required')">Origin is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field>
+        <input matInput formControlName="destination" placeholder="Destination">
+        <mat-error *ngIf="form.get('destination').hasError('required')">Destination is required</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-form-field>
+        <input matInput formControlName="departureTime" placeholder="Departure time">
+        <mat-error *ngIf="form.get('departureTime').hasError('required')">Departure time is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field>
+        <input matInput formControlName="returnTime" placeholder="Return time">
+        <mat-error *ngIf="form.get('returnTime').hasError('required')">Return time is required</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <mat-form-field>
+        <textarea matInput formControlName="additionalInformation" placeholder="Additional Information"></textarea>
+      </mat-form-field>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-checkbox formControlName="withSKPlanesDiscount">With SK Discount</mat-checkbox>
+    </div>
+  </div>
+
+
+  <div formArrayName="crew" class="crew-container shadow" *ngFor="let crewMember of crew.controls; index as index">
+    <div class="row crew-header">
+      <div class="col">
+        <span>crewMember - {{ index + 1}}</span>
+        <mat-icon class="float-right" (click)="removeCrewMember(index)">delete_forever</mat-icon>
+      </div>
+    </div>
+    <div class="row" [formGroupName]="index">
+      <div class="col-sm-5">
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Name">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field>
+          <mat-select formControlName="job" placeholder="Job">
+            <mat-option *ngFor="let job of jobs" [value]="job.value">{{ job.label }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <button mat-raised-button color="primary" (click)="addCrewMember()">Add crew member</button>
+  </div>
+</form>
+<!-- <pre>
+  {{ form.value | json }}
+</pre> -->
